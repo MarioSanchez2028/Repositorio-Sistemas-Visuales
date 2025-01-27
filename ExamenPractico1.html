@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <title>Interaccion</title>
+</head>
+<body>
+    <button id="Boton de interaccion">Iniciar Interaccion</button>
+    <br><br>
+    <select id="colores">
+        <option value="">Selecciona un color</option>
+        <option value="Rojo">Rojo</option>
+        <option value="Azul">Azul</option>
+        <option value="Verde">Verde</option>
+    </select>
+    <br><br>
+    <input type="textp" id="nombre" placeholder="Escribe tu nombre">
+    <br><br>
+    <p id="mensaje"></p>
+
+    <script>
+        const interactionButton = document.getElementById('Boton de interaccion');
+        const colorSelect = document.getElementById('colores');
+        const nameInput = document.getElementById('nombre');
+        const message = document.getElementById('mensaje');
+
+        interactionButton.addEventListener('click', () => {
+            if (interactionButton.textContent === 'Iniciar Interaccion') {
+                interactionButton.textContent = 'Finalizar Interaccion';
+                colorSelect.disabled = true;
+                nameInput.disabled = true;
+                message.textContent = 'Interaccion iniciada, espera por favor.';
+                console.log('Interaccion iniciada');
+            } else {
+                colorSelect.disabled = false;
+                nameInput.disabled = false;
+
+                if (nameInput.value === '') {
+                    message.textContent = 'Por favor, ingresa tu nombre antes de continuar.';
+                    console.log('Nombre vacio');
+                } else if (colorSelect.value === '') {
+                    message.textContent = 'Selecciona un color para continuar.';
+                    console.log('Color no seleccionado');
+                } else {
+                    message.textContent = `Hola, ${nameInput.value}. Elegiste el color ${colorSelect.value}.`;
+                    console.log(`Nombre: ${nameInput.value}, Color: ${colorSelect.value}`);
+                }
+
+                interactionButton.textContent = 'Iniciar Interaccion';
+            }
+        });
+    </script>
+</body>
+</html>
